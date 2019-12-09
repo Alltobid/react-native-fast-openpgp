@@ -24,14 +24,21 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    repositories {
+        flatDir {
+            // dirs 'libs'
+            dirs 'libs', "${project(':react-native-fast-openpgp').projectDir}/libs"
+        }
+    }
 }
 
 repositories {
     mavenCentral() 
 }
 dependencies {
-    implementation files('libs/openpgp.aar')
-    implementation files('libs/openpgp-sources.jar')
-    implementation 'com.facebook.react:react-native:+'
+    compile(name:'openpgp', ext:'aar')
+    compile files('libs/openpgp-sources.jar')
+    provided 'com.facebook.react:react-native:+'
 }
   
